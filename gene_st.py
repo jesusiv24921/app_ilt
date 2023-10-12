@@ -21,10 +21,10 @@ except Exception as e:
 st.title("ILT DATA GENERATOR")
 
 st.sidebar.header("Settings")
-nuevo_well = st.sidebar.text_input("Well Name", "CAN420")
-nuevo_uwi = st.sidebar.text_input("UWI Name", "CAN420")
+nuevo_well = st.sidebar.text_input("Name_1", "CAN420")
+nuevo_uwi = st.sidebar.text_input("Name_2", "CAN420")
 nueva_fecha = st.sidebar.text_input("Date", "09/07/2023")
-archivo_salida = st.sidebar.text_input("name txt", "20230709_ILT_CAN700.txt")
+archivo_salida = st.sidebar.text_input("name txt (YYYYMMDD_ILT_Name_1.txt)", "20230709_ILT_CAN700.txt")
 
 file = st.file_uploader("Upload a CSV file", type=["csv"])
 
