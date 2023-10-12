@@ -55,7 +55,7 @@ if file is not None:
     df_new = df_new.astype(str)
     df_new = df_new.apply(lambda x: x.str.replace('.', ','))
 
-    st.table(df_new)
+    # st.table(df_new)
 
     if generate_txt_button:
         # Procesa el archivo base_text directamente
