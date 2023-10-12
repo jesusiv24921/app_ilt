@@ -5,7 +5,7 @@ from io import BytesIO
 base_text=""
 
 
-with open('20230709_ILT_BASE.txt', 'r') as base_file:
+with open('https://github.com/jesusiv24921/app_ilt/blob/main/20230709_ILT_BASE.txt', 'r') as base_file:
     base_text=base_file.read()
 
 st.title("ILT DATA GENERATOR")
