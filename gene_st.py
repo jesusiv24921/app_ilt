@@ -24,6 +24,7 @@ st.sidebar.header("Settings")
 nuevo_well = st.sidebar.text_input("Well Name", "CAN420")
 nuevo_uwi = st.sidebar.text_input("UWI Name", "CAN420")
 nueva_fecha = st.sidebar.text_input("Date", "09/07/2023")
+archivo_salida = st.sidebar.text_input("name txt", "20230709_ILT_CAN700")
 
 file = st.file_uploader("Upload a CSV file", type=["csv"])
 
@@ -82,13 +83,13 @@ if file is not None:
                 df_lines = df_new.apply(lambda row: '\t'.join(row.astype(str)), axis=1).to_list()
                 lines[indice_inicio_seccion + 1:indice_inicio_seccion + 1 + len(df_lines)] = df_lines
 
-            st.success("nuevo.txt generated!")
+            st.success("nuevo.txt generated)
 
-            st.subheader("Download nuevo.txt")
+            st.subheader("Download nuevo.txt)
             st.write("Click the button")
             st.download_button(
                 label="Download",
                 data="\n".join(lines),
                 key="Download",
-                file_name="nuevo.txt",
+                file_name=archivo_salida,
             )
