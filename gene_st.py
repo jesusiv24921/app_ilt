@@ -57,8 +57,8 @@ if file is not None:
     df_new = df_new.apply(lambda x: x.str.replace('.', ','))
     # nuevo_tope1=str(nuevo_tope)
     # nueva_base1=str(nueva_base)
-    nuevo_tope1 = st.sidebar.text_input("Top", nuevo_tope)
-    nueva_base1 = st.sidebar.text_input("Bottom", nueva_base)
+    nuevo_tope1 = st.sidebar.text_input("Top", nuevo_tope,label_visibility="hidden")
+    nueva_base1 = st.sidebar.text_input("Bottom", nueva_base,label_visibility="hidden")
     
 
     # st.table(df_new)
