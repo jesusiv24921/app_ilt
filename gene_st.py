@@ -55,8 +55,10 @@ if file is not None:
 
     df_new = df_new.astype(str)
     df_new = df_new.apply(lambda x: x.str.replace('.', ','))
-    nuevo_tope1=str(nuevo_tope)
-    nueva_base1=str(nueva_base)
+    # nuevo_tope1=str(nuevo_tope)
+    # nueva_base1=str(nueva_base)
+    nuevo_tope1 = st.sidebar.text_input("UWI Name", nuevo_tope)
+    
 
     # st.table(df_new)
 
