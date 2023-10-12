@@ -56,7 +56,7 @@ if file is not None:
     df_new = df_new.astype(str)
     df_new = df_new.apply(lambda x: x.str.replace('.', ','))
     nuevo_tope1=str(nuevo_tope)
-    nuevo_base1=str(nuevo_base)
+    nueva_base1=str(nueva_base)
 
     # st.table(df_new)
 
