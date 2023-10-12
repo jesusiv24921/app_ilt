@@ -55,6 +55,8 @@ if file is not None:
 
     df_new = df_new.astype(str)
     df_new = df_new.apply(lambda x: x.str.replace('.', ','))
+    nuevo_tope1=str(nuevo_tope)
+    nuevo_base1=str(nuevo_base)
 
     # st.table(df_new)
 
@@ -71,9 +73,9 @@ if file is not None:
                 elif "DATE." in linea:
                     lines[i] = f'DATE. {nueva_fecha}:DATE'
                 elif "STRT.F" in linea:
-                    lines[i]=f'STRT.F {nuevo_tope}:START DEPTH'
+                    lines[i]=f'STRT.F {nuevo_tope1}:START DEPTH'
                 elif "STOP.F" in linea:
-                    lines[i]=f'STOP.F {nueva_base}:STOP DEPTH'
+                    lines[i]=f'STOP.F {nueva_base1}:STOP DEPTH'
 
             
 
