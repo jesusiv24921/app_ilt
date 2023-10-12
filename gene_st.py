@@ -76,7 +76,7 @@ if file is not None:
         
             indice_inicio_seccion=None
 
-        for i, linea in enumerate(lineas):
+        for i, linea in enumerate(lines):
             if "~A" in linea:
                 indice_inicio_seccion=i
                 break
@@ -86,8 +86,8 @@ if file is not None:
             df_lines=df_new.apply(lambda row:'\t'.join(row.astype(str)),axis=1).to_list()
             # df_lines=['\n'.join(df_lines[i:i+4]) for i in range(0,len(df_lines),4)]
             # df_lines=df_new.to_string(header=False, index=False).split('\n')[1:]
-            lineas[indice_inicio_seccion+1:indice_inicio_seccion+1+len(df_lines)]=df_lines
-        output.write("\n".join(lineas).encode())
+            lines[indice_inicio_seccion+1:indice_inicio_seccion+1+len(df_lines)]=df_lines
+        output.write("\n".join(lines).encode())
         output.seek(0)
         
         st.success("nuevo.txt generated!")
