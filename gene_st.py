@@ -83,9 +83,9 @@ if file is not None:
                 df_lines = df_new.apply(lambda row: '\t'.join(row.astype(str)), axis=1).to_list()
                 lines[indice_inicio_seccion + 1:indice_inicio_seccion + 1 + len(df_lines)] = df_lines
 
-            st.success("nuevo.txt generated)
+            st.success("nuevo.txt generated")
 
-            st.subheader("Download nuevo.txt)
+            st.subheader("Download nuevo.txt")
             st.write("Click the button")
             st.download_button(
                 label="Download",
