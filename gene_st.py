@@ -1,12 +1,30 @@
 import streamlit as st
 import pandas as pd
 from io import BytesIO
-
+import requests
 base_text=""
 
 
-with open('https://github.com/jesusiv24921/app_ilt/blob/main/20230709_ILT_BASE.txt', 'r') as base_file:
+
+url = 'https://raw.githubusercontent.com/jesusiv24921/app_ilt/main/20230709_ILT_BASE.txt'
+
+try:
+    response = requests.get(url)
+    response.raise_for_status()
+    with open('20230709_ILT_BASE.txt', 'wb') as file:
+        file.write(response.content)
+except requests.exceptions.RequestException as e:
+    print(f"Error al descargar el archivo: {e}")
+except Exception as e:
+    print(f"Error: {e}")
+
+# Ahora puedes abrir el archivo local
+with open('20230709_ILT_BASE.txt', 'r') as base_file:
     base_text=base_file.read()
+
+
+
+    
 
 st.title("ILT DATA GENERATOR")
 
