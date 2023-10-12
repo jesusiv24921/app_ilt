@@ -43,6 +43,7 @@ if file is not None:
     st.write("Updated Well:", nuevo_well)
     st.write("Updated UWI:", nuevo_uwi)
     st.write("Updated DATE:", nueva_fecha)
+    
 
     nuevos_valores = list(range(nuevo_tope, nueva_base + 1))
     df_new = pd.DataFrame({'Depth': nuevos_valores})
@@ -69,6 +70,12 @@ if file is not None:
                     lines[i] = f'UWI. {nuevo_uwi}:UNIQUE WELL ID'
                 elif "DATE." in linea:
                     lines[i] = f'DATE. {nueva_fecha}:DATE'
+                elif "STRT.F" in linea:
+                    lines[i]=f'STRT.F {nuevo_tope}:START DEPTH'
+                elif "STOP.F" in linea:
+                    lines[i]=f'STOP.F {nueva_base}:STOP DEPTH'
+
+            
 
             # Encuentra la línea que contiene "~A" para reemplazar la sección adecuada
             indice_inicio_seccion = None
