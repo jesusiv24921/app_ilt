@@ -76,8 +76,8 @@ if file is not None:
                     lines[i] = f'DATE. {nueva_fecha}:DATE'
                 elif "STRT.F" in linea:
                     lines[i]=f'STRT.F {nuevo_tope1}:START DEPTH'
-                elif "STOP.F" in linea:
-                    lines[i]=f'STOP.F {nueva_base1}:STOP DEPTH'
+                # elif "STOP.F" in linea:
+                #     lines[i]=f'STOP.F {nueva_base1}:STOP DEPTH'
 
             
 
