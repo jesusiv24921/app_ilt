@@ -32,7 +32,7 @@ generate_txt_button = st.button("Generate Text File")
 
 if file is not None:
     try:
-        df = pd.read_csv(file, sep=None)
+        df = pd.read_csv(file, sep=",")
     except pd.errors.ParserError:
         # Intenta cargar con punto y coma como separador si falla con comas
         try:
