@@ -32,11 +32,11 @@ generate_txt_button = st.button("Generate Text File")
 
 if file is not None:
     try:
-        df = pd.read_csv(file, sep=",")
+        df = pd.read_csv(file, sep=";")
     except pd.errors.ParserError:
         # Intenta cargar con punto y coma como separador si falla con comas
         try:
-            df = pd.read_csv(file, sep=";")
+            df = pd.read_csv(file, sep=",")
         except pd.errors.ParserError as e:
             st.error(f"Error al cargar el archivo CSV: {e}")
             st.error("No se pudo cargar el archivo con separador ';'")
