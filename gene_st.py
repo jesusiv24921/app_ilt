@@ -31,7 +31,7 @@ file = st.file_uploader("Upload a CSV file", type=["csv"])
 generate_txt_button = st.button("Generate Text File")
 
 if file is not None:
-    df = pd.read_csv(file, sep=",")
+    df = pd.read_csv(file, sep=";")
     df = df.dropna()
 
     nuevo_tope = int(df['Tope'].min() - 10)
