@@ -47,7 +47,7 @@ if file is not None:
 
     nuevos_valores = list(range(nuevo_tope, nueva_base + 1))
     df_new = pd.DataFrame({'Depth': nuevos_valores})
-    df_new["Z1"] = df_new['Depth'].apply(lambda x: df.loc[(x >= df['Tope']) & (x <= df['Base']), '14/4/2023'].values[0] if any(((x >= df['Tope']) & (x <= df['Base']))) else 0.00)
+    df_new["Z1"] = df_new['Depth'].apply(lambda x: df.loc[(x >= df['Tope']) & (x <= df['Base']), 'C'].values[0] if any(((x >= df['Tope']) & (x <= df['Base']))) else 0.00)
 
     df_new['Z2'] = [0.00 for _ in range(len(df_new))]
     df_new['Z3'] = df_new["Z1"]
