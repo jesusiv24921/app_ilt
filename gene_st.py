@@ -5,16 +5,6 @@ import pandas as pd
 import csv
 import tempfile
 
-def detectar_delimitador(archivo):
-    try:
-        # Intentar leer el archivo con ',' como delimitador
-        df = pd.read_csv(archivo, sep=',')
-        return ','
-    except IndexError:
-        # Si se produce un IndexError, intentar leer el archivo con ';' como delimitador
-        df = pd.read_csv(archivo, sep=';')
-        return ';'
-# URL del archivo en GitHub
 url = 'https://raw.githubusercontent.com/jesusiv24921/app_ilt/main/20230709_ILT_BASE.txt'
 
 try:
@@ -36,6 +26,7 @@ st.sidebar.header("Settings")
 
 
 file = st.file_uploader("Upload a CSV file", type=["csv"])
+file1=file
 # Agregar un radio button para seleccionar entre "plt" e "ilt"
 opcion_seleccionada = st.radio("Seleccionar opción:", ("PLT", "ILT"))
 
@@ -53,9 +44,9 @@ generate_txt_button = st.button("Generate Text File")
 if file is not None:
     df_1 = pd.read_csv(file, sep=',', header=None)
     if len(df_1.columns)==1:
-        df = pd.read_csv(file, sep=';', header=None)
+        df = pd.read_csv(file_1, sep=';', header=None)
     else:
-        df = pd.read_csv(file, sep=',', header=None)
+        df = pd.read_csv(file_1, sep=',', header=None)
     
     st.write(df)
     st.write(len(df.columns))
