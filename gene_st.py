@@ -36,9 +36,25 @@ else:
 
 generate_txt_button = st.button("Generate Text File")
 
+import csv
+import pandas as pd
+
+# Función para inferir automáticamente el delimitador del archivo CSV
+def inferir_delimitador(archivo):
+    with open(archivo, 'r') as f:
+        dialecto = csv.Sniffer().sniff(f.readline())
+        return dialecto.delimiter
+
+# Ruta del archivo CSV
+archivo_csv = file
+
+# Inferir automáticamente el delimitador del archivo CSV
+delimitador = inferir_delimitador(archivo_csv)
+
+
 if file is not None:
     
-    df = pd.read_csv(file, sep=",", header=None)
+    df = pd.read_csv(file, sep=delimitador, header=None)
     df_=df.iloc[0:2,0:2]
     df=df.drop([0,1], axis=0).reset_index(drop=True)
     df.columns=df.iloc[0]
