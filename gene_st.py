@@ -26,7 +26,7 @@ st.sidebar.header("Settings")
 
 
 file = st.file_uploader("Upload a CSV file", type=["csv"])
-file1=file
+file_1=file
 # Agregar un radio button para seleccionar entre "plt" e "ilt"
 opcion_seleccionada = st.radio("Seleccionar opción:", ("PLT", "ILT"))
 
