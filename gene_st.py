@@ -6,18 +6,14 @@ import csv
 import tempfile
 
 def detectar_delimitador(archivo):
-    df = pd.read_csv(archivo, sep=',', header=2)
-    if len(df.columns)>1:
+    try:
         # Intentar leer el archivo con ',' como delimitador
-        df = pd.read_csv(archivo, sep=',', header=None)
-        return df
-    else:
+        df = pd.read_csv(archivo, sep=',')
+        return ','
+    except IndexError:
         # Si se produce un IndexError, intentar leer el archivo con ';' como delimitador
-        df = pd.read_csv(archivo, sep=';', header=None)
-        st.write(df)
-        return df
-
-
+        df = pd.read_csv(archivo, sep=';')
+        return ';'
 # URL del archivo en GitHub
 url = 'https://raw.githubusercontent.com/jesusiv24921/app_ilt/main/20230709_ILT_BASE.txt'
 
@@ -55,8 +51,9 @@ generate_txt_button = st.button("Generate Text File")
 
 
 if file is not None:
-    st.write(file)
-    df= detectar_delimitador(file)
+    st.write(file.name)
+    delimitador= detectar_delimitador(file.name)
+    df = pd.read_csv(file, sep=delimitador, header=None)
     
     st.write(df)
     df_=df.iloc[0:2,0:2]
