@@ -19,11 +19,12 @@ def procesar_csv(archivo):
             # Guardar el archivo procesado en un nuevo archivo temporal
             with st.file_uploader("Guardar archivo procesado", type=["csv"], label="Guardar CSV procesado") as nuevo_archivo:
                 if nuevo_archivo is not None:
-                    nuevo_archivo.write(contenido_procesado.encode())
+                    return nuevo_archivo.write(contenido_procesado.encode())
                     
             st.success("El archivo ha sido procesado y guardado correctamente.")
         else:
             st.warning("El archivo ya está separado por comas.")
+            return archivo
     except Exception as e:
         st.error(f"Error al procesar el archivo: {e}")
 
