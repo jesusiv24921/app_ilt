@@ -6,29 +6,7 @@ import csv
 import tempfile
 
 # Función para procesar el archivo CSV y cambiar el delimitador
-def procesar_csv(archivo):
-    try:
-        # Leer el contenido del archivo CSV
-        contenido = archivo.read().decode("utf-8")
-        
-        # Verificar si el delimitador es punto y coma
-        if ';' in contenido:
-            # Reemplazar punto y coma por comas
-            contenido_procesado = contenido.replace(';', ',')
-            
-            # Guardar el archivo procesado en un nuevo archivo temporal
-            with st.file_uploader("Guardar archivo procesado", type=["csv"], label="Guardar CSV procesado") as nuevo_archivo:
-                if nuevo_archivo is not None:
-                    return nuevo_archivo.write(contenido_procesado.encode())
-                    
-            st.success("El archivo ha sido procesado y guardado correctamente.")
-        else:
-            st.warning("El archivo ya está separado por comas.")
-            return archivo
-    except Exception as e:
-        st.error(f"Error al procesar el archivo: {e}")
-
-# Configurar la interfaz de usuario con Streamlit
+mlit
 st.title("Procesador de archivos CSV")
 
 
@@ -69,7 +47,6 @@ generate_txt_button = st.button("Generate Text File")
 
 
 if file is not None:
-    procesar_csv(file)
     df = pd.read_csv(file, sep=',', header=None)
     st.write(len(df.columns))
     # if len(df_1.columns)==6:
