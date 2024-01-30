@@ -45,7 +45,7 @@ else:
 generate_txt_button = st.button("Generate Text File")
 
 if file is not None:
-    df = pd.read_csv(file, sep=';', header=None)
+    df = pd.read_csv(file, sep=',', header=None)
     st.write(df)
     st.write(len(df.columns))
     # df_=df.iloc[0:2,0:2]
