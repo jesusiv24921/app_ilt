@@ -11,7 +11,7 @@ def detectar_delimitador(archivo):
         # Intentar leer el archivo con ',' como delimitador
         df = pd.read_csv(archivo, sep=',', header=None)
         return df
-     else:
+    else:
         # Si se produce un IndexError, intentar leer el archivo con ';' como delimitador
         df = pd.read_csv(archivo, sep=';', header=None)
         return df
