@@ -51,8 +51,8 @@ generate_txt_button = st.button("Generate Text File")
 
 
 if file is not None:
-    # delimitador= detectar_delimitador(file)
-    df = pd.read_csv(file, sep=";", header=None)
+    delimitador= detectar_delimitador(file)
+    df = pd.read_csv(file, sep=delimitador, header=None)
     
     st.write(df)
     df_=df.iloc[0:2,0:2]
