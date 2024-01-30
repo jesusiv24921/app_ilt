@@ -9,11 +9,11 @@ def detectar_delimitador(archivo):
     try:
         # Intentar leer el archivo con ',' como delimitador
         df = pd.read_csv(archivo, sep=',')
-        return ','
+        return df
     except IndexError:
         # Si se produce un IndexError, intentar leer el archivo con ';' como delimitador
         df = pd.read_csv(archivo, sep=';')
-        return ';'
+        return df
 
 
 # URL del archivo en GitHub
@@ -54,11 +54,11 @@ generate_txt_button = st.button("Generate Text File")
 
 if file is not None:
     st.write(file.name)
-    delimitador= detectar_delimitador(file)
+    df= detectar_delimitador(file)
     
     
 
-    df = pd.read_csv(file, sep=delimitador, header=None)
+    # df = pd.read_csv(file, sep=delimitador, header=None)
     st.write(df)
     df_=df.iloc[0:2,0:2]
     df=df.drop([0,1], axis=0).reset_index(drop=True)
