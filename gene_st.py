@@ -46,10 +46,10 @@ if file is not None:
     st.write(len(df_1.columns))
     st.write(type(len(df_1.columns)))
     
-    if len(df_1.columns)==1:
-        df = pd.read_csv(file_1, sep=';', header=None)
-    else:
+    if len(df_1.columns)==6:
         df = pd.read_csv(file_1, sep=',', header=None)
+    else:
+        df = pd.read_csv(file_1, sep=';', header=None)
     
     st.write(df)
     st.write(len(df.columns))
