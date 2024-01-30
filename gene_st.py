@@ -6,11 +6,12 @@ import csv
 import tempfile
 
 def detectar_delimitador(archivo):
-    try:
+    df = pd.read_csv(archivo, sep=',', header=None)
+    if len(df.columns)>1:
         # Intentar leer el archivo con ',' como delimitador
         df = pd.read_csv(archivo, sep=',', header=None)
         return df
-    except IndexError:
+     else:
         # Si se produce un IndexError, intentar leer el archivo con ';' como delimitador
         df = pd.read_csv(archivo, sep=';', header=None)
         return df
