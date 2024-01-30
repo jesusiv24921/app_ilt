@@ -43,7 +43,7 @@ else:
 
 
 generate_txt_button = st.button("Generate Text File")
-st.write(file)
+st.write(file['name'])
 
 if file is not None:
         # Crear un archivo temporal y escribir el contenido del archivo cargado
