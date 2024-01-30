@@ -2,6 +2,19 @@ import requests
 import streamlit as st
 import pandas as pd
 
+import csv
+import tempfile
+
+def detectar_delimitador(archivo):
+    try:
+        # Intentar leer el archivo con ',' como delimitador
+        df = pd.read_csv(archivo, sep=',')
+        return ','
+    except IndexError:
+        # Si se produce un IndexError, intentar leer el archivo con ';' como delimitador
+        df = pd.read_csv(archivo, sep=';')
+        return ';'
+
 
 # URL del archivo en GitHub
 url = 'https://raw.githubusercontent.com/jesusiv24921/app_ilt/main/20230709_ILT_BASE.txt'
@@ -40,8 +53,13 @@ generate_txt_button = st.button("Generate Text File")
 
 
 if file is not None:
+    st.write(file.name)
+    delimitador= detectar_delimitador(file.name)
     
-    df = pd.read_csv(file, sep=",", header=None)
+    
+
+    df = pd.read_csv(file, sep=delimitador, header=None)
+    st.write(df)
     df_=df.iloc[0:2,0:2]
     df=df.drop([0,1], axis=0).reset_index(drop=True)
     df.columns=df.iloc[0]
