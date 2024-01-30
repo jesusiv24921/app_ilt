@@ -58,9 +58,6 @@ if file is not None:
     st.write(file)
     df= detectar_delimitador(file)
     
-    
-
-    # df = pd.read_csv(file, sep=delimitador, header=None)
     st.write(df)
     df_=df.iloc[0:2,0:2]
     df=df.drop([0,1], axis=0).reset_index(drop=True)
