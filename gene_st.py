@@ -45,16 +45,10 @@ generate_txt_button = st.button("Generate Text File")
 
 if file is not None:
     df = pd.read_csv(file, sep=',', header=None)
-    st.write(df)
-    st.write(len(df.columns))
-    # df_=df.iloc[0:2,0:2]
-    st.write(df_)
+    df_=df.iloc[0:2,0:2]
     df=df.drop([0,1], axis=0).reset_index(drop=True)
-    st.write(df)
     df.columns=df.iloc[0]
-    st.write(df)
     df = df.drop(0).reset_index(drop=True)
-    st.write(df)
     nombre_pozo=df_.iloc[0,1]
     fecha_registro=df_.iloc[1,1]
     fecha_registro = pd.to_datetime(fecha_registro)
