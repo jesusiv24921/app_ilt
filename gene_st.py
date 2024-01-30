@@ -55,7 +55,7 @@ if file is not None:
     # st.write(delimitador)
     df = pd.read_csv(file, sep=',', header=None)
     
-    
+    st.write(df)
     st.write(df.columns)
     df_=df.iloc[0:2,0:2]
     st.write(df_)
