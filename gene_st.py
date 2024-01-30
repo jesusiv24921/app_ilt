@@ -18,24 +18,50 @@ except requests.exceptions.RequestException as e:
 except Exception as e:
     st.error(f"Error: {e}")
 
-st.title("ILT DATA GENERATOR")
+st.title("PLT-ILT DATA GENERATOR")
 
 st.sidebar.header("Settings")
-nuevo_well = st.sidebar.text_input("Name_1", "CAN420")
-nuevo_uwi = st.sidebar.text_input("Name_2", "CAN420")
-nueva_fecha = st.sidebar.text_input("Date", "09/07/2023")
-archivo_salida = st.sidebar.text_input("name txt (YYYYMMDD_ILT_Name_1.txt)", "20230709_ILT_CAN700.txt")
+
 
 file = st.file_uploader("Upload a CSV file", type=["csv"])
+# Agregar un radio button para seleccionar entre "plt" e "ilt"
+opcion_seleccionada = st.radio("Seleccionar opción:", ("PLT", "ILT"))
+
+# Guardar el nombre correspondiente en una variable
+if opcion_seleccionada == "PLT":
+    nombre_seleccionado = "PLT"
+else:
+    nombre_seleccionado = "ILT"
+
 
 generate_txt_button = st.button("Generate Text File")
 
 if file is not None:
-    df = pd.read_csv(file, sep=";")
-    df = df.dropna()
+    
+    df = pd.read_csv(file, sep=",", header=None)
+    df_=df.iloc[0:2,0:2]
+    df=df.drop([0,1], axis=0).reset_index(drop=True)
+    df.columns=df.iloc[0]
+    df = df.drop(0).reset_index(drop=True)
+    nombre_pozo=df_.iloc[0,1]
+    fecha_registro=df_.iloc[1,1]
+    fecha_registro = pd.to_datetime(fecha_registro)
+    nuevo_well = st.sidebar.text_input("Name_1", nombre_pozo, disabled=True)
+    nuevo_uwi = st.sidebar.text_input("Name_2", nombre_pozo, disabled=True)
+    nueva_fecha = st.sidebar.text_input("Date", fecha_registro, disabled=True)
 
+    archivo_salida = st.sidebar.text_input("name txt (YYYYMMDD_ILT_Name_1.txt)", f"{fecha_registro.year}{fecha_registro.month}{fecha_registro.day}_{nombre_seleccionado}_{nombre_pozo}.txt", disabled=True)
+
+
+
+    df = df.dropna()
+    df['Tope']=df['Tope'].astype(int)
+    df['Base']=df['Base'].astype(int)
     nuevo_tope = int(df['Tope'].min() - 10)
     nueva_base = int(df['Base'].max() + 10)
+
+    # nuevo_tope = (df['Tope'].min() - 10)
+    # nueva_base = (df['Base'].max() + 10)
 
     nuevos_valores = list(range(nuevo_tope, nueva_base + 1))
 
@@ -47,18 +73,18 @@ if file is not None:
 
     nuevos_valores = list(range(nuevo_tope, nueva_base + 1))
     df_new = pd.DataFrame({'Depth': nuevos_valores})
-    df_new["Z1"] = df_new['Depth'].apply(lambda x: df.loc[(x >= df['Tope']) & (x <= df['Base']), 'C'].values[0] if any(((x >= df['Tope']) & (x <= df['Base']))) else 0.00)
+    df_new["Z1"] = df_new['Depth'].apply(lambda x: df.loc[(x >= df['Tope']) & (x <= df['Base']), 'Ql.bbl/d'].values[0] if any(((x >= df['Tope']) & (x <= df['Base']))) else 0.00)
 
-    df_new['Z2'] = [0.00 for _ in range(len(df_new))]
-    df_new['Z3'] = df_new["Z1"]
+    df_new['Z2'] = df_new['Depth'].apply(lambda x: df.loc[(x >= df['Tope']) & (x <= df['Base']), 'Qo.bbl/d'].values[0] if any(((x >= df['Tope']) & (x <= df['Base']))) else 0.00)
+    df_new['Z3'] = df_new['Depth'].apply(lambda x: df.loc[(x >= df['Tope']) & (x <= df['Base']), 'Qw.bbl/d'].values[0] if any(((x >= df['Tope']) & (x <= df['Base']))) else 0.00)
     df_new['Z4'] = [0.00 for _ in range(len(df_new))]
 
     df_new = df_new.astype(str)
     df_new = df_new.apply(lambda x: x.str.replace('.', ','))
     # nuevo_tope1=str(nuevo_tope)
     # nueva_base1=str(nueva_base)
-    nuevo_tope1 = st.sidebar.text_input("Top", nuevo_tope,disabled=False)
-    nueva_base1 = st.sidebar.text_input("Bottom", nueva_base,disabled=False)
+    nuevo_tope1 = st.sidebar.text_input("Top", nuevo_tope+10,disabled=True)
+    nueva_base1 = st.sidebar.text_input("Bottom", nueva_base-10,disabled=True)
     
 
     # st.table(df_new)
@@ -76,9 +102,9 @@ if file is not None:
                 elif "DATE." in linea:
                     lines[i] = f'DATE. {nueva_fecha}:DATE'
                 elif "STRT.F" in linea:
-                    lines[i]=f'STRT.F {nuevo_tope1}:START DEPTH'
+                    lines[i]=f'STRT.F {nuevo_tope+10}:START DEPTH'
                 elif "STOP.F" in linea:
-                    lines[i]=f'STOP.F {nueva_base1}:STOP DEPTH'
+                    lines[i]=f'STOP.F {nueva_base-10}:STOP DEPTH'
 
             
 
