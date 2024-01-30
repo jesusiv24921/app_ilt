@@ -54,7 +54,7 @@ generate_txt_button = st.button("Generate Text File")
 
 
 if file is not None:
-    st.write(file.name)
+    st.write(file)
     df= detectar_delimitador(file)
     
     
