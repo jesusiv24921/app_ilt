@@ -30,6 +30,7 @@ st.title("PLT-ILT DATA GENERATOR")
 st.sidebar.header("Settings")
 
 
+
 file = st.file_uploader("Upload a CSV file", type=["csv"])
 # Agregar un radio button para seleccionar entre "plt" e "ilt"
 opcion_seleccionada = st.radio("Seleccionar opción:", ("PLT", "ILT"))
@@ -42,7 +43,7 @@ else:
 
 
 generate_txt_button = st.button("Generate Text File")
-
+st.write(file)
 
 if file is not None:
         # Crear un archivo temporal y escribir el contenido del archivo cargado
