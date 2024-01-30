@@ -52,6 +52,7 @@ generate_txt_button = st.button("Generate Text File")
 
 if file is not None:
     delimitador= detectar_delimitador(file)
+    st.write(delimitador)
     df = pd.read_csv(file, sep=f'{delimitador}', header=None)
     
     st.write(df)
