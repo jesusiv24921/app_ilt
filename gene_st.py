@@ -47,7 +47,7 @@ generate_txt_button = st.button("Generate Text File")
 
 
 if file is not None:
-    df = pd.read_csv(file, sep=',', header=None)
+    df = pd.read_csv(file, sep=';', header=None)
     st.write(len(df.columns))
     # if len(df_1.columns)==6:
     #     df = pd.read_csv(file_1, sep=';', header=None)
