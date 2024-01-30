@@ -56,9 +56,11 @@ if file is not None:
     
     st.write(df)
     df_=df.iloc[0:2,0:2]
+    st.write(df_)
     df=df.drop([0,1], axis=0).reset_index(drop=True)
     df.columns=df.iloc[0]
     df = df.drop(0).reset_index(drop=True)
+    st.write(df)
     nombre_pozo=df_.iloc[0,1]
     fecha_registro=df_.iloc[1,1]
     fecha_registro = pd.to_datetime(fecha_registro)
