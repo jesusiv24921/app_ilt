@@ -6,7 +6,7 @@ import csv
 import tempfile
 
 # Función para procesar el archivo CSV y cambiar el delimitador
-mlit
+
 st.title("Procesador de archivos CSV")
 
 
