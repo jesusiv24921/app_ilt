@@ -52,7 +52,7 @@ if file is not None:
     nombre_pozo=df_.iloc[0,1]
     fecha_registro=df_.iloc[1,1]
     fecha_registro = pd.to_datetime(fecha_registro)
-    fecha_registro_=fecha_registro.strftime('%d/%m/%Y')
+    fecha_registro_=fecha_registro.strftime('%m/%d/%Y')
     nuevo_well = st.sidebar.text_input("Name_1", nombre_pozo, disabled=True)
     nuevo_uwi = st.sidebar.text_input("Name_2", nombre_pozo, disabled=True)
     nueva_fecha = st.sidebar.text_input("Date", fecha_registro_, disabled=True)
