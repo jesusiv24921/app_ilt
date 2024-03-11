@@ -57,7 +57,7 @@ if file is not None:
     nuevo_uwi = st.sidebar.text_input("Name_2", nombre_pozo, disabled=True)
     nueva_fecha = st.sidebar.text_input("Date", fecha_registro_, disabled=True)
 
-    archivo_salida = st.sidebar.text_input("name txt (YYYYMMDD_ILT_Name_1.txt)", f"{fecha_registro.year}{fecha_registro.day}{fecha_registro.month}_{nombre_seleccionado}_{nombre_pozo}.txt", disabled=True)
+    archivo_salida = st.sidebar.text_input("name txt (YYYYMMDD_ILT_Name_1.txt)", f"{fecha_registro.year}0{fecha_registro.day}0{fecha_registro.month}_{nombre_seleccionado}_{nombre_pozo}.txt", disabled=True)
 
 
 
