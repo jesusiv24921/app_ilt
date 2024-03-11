@@ -52,10 +52,10 @@ if file is not None:
     nombre_pozo=df_.iloc[0,1]
     fecha_registro=df_.iloc[1,1]
     fecha_registro = pd.to_datetime(fecha_registro)
-    fecha_registro=fecha_registro.strftime('%d/%m/%Y')
+    fecha_registro_=fecha_registro.strftime('%d/%m/%Y')
     nuevo_well = st.sidebar.text_input("Name_1", nombre_pozo, disabled=True)
     nuevo_uwi = st.sidebar.text_input("Name_2", nombre_pozo, disabled=True)
-    nueva_fecha = st.sidebar.text_input("Date", fecha_registro, disabled=True)
+    nueva_fecha = st.sidebar.text_input("Date", fecha_registro_, disabled=True)
 
     archivo_salida = st.sidebar.text_input("name txt (YYYYMMDD_ILT_Name_1.txt)", f"{fecha_registro.year}{fecha_registro.month}{fecha_registro.day}_{nombre_seleccionado}_{nombre_pozo}.txt", disabled=True)
 
